@@ -758,3 +758,40 @@ dialog::backdrop { background: rgba(63, 26, 60, 0.6); }
 }
 
 .credit { font-size: 0.78rem; margin-top: 6px; }
+/* ---------- Phone fixes: smaller text and spacing ---------- */
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+
+@media (max-width: 600px) {
+  body { font-size: 14px; }
+
+  .hero { padding: 24px 18px 36px; gap: 24px; }
+  .eyebrow { font-size: 0.64rem; letter-spacing: 0.14em; margin-bottom: 8px; }
+  .hero h1 { font-size: 1.4rem; line-height: 1.2; }
+  .hero-text { font-size: 0.85rem; margin: 12px auto 18px; }
+  .btn { padding: 10px 22px; font-size: 0.85rem; }
+  .collage { max-width: 240px; }
+
+  .section { padding: 0 4vw 48px; }
+  .section > h2, .finder h2, .results h2 { font-size: 1.3rem; margin-bottom: 14px; }
+  .section > .lead { font-size: 0.85rem; }
+
+  .finder { margin: 0 3vw 40px; padding: 20px 12px; }
+  fieldset { margin-bottom: 20px; }
+  legend { font-size: 0.95rem; margin-bottom: 10px; }
+  .options { gap: 6px; }
+  .options label { padding: 6px 11px; font-size: 0.78rem; }
+  .hint { font-size: 0.78rem; }
+
+  .form-actions { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+
+  .tab { font-size: 0.74rem; padding: 9px 3px; }
+  .chip { font-size: 0.76rem; padding: 5px 11px; }
+
+  .movie { padding: 12px; gap: 10px; }
+  .movie h3 { font-size: 0.98rem; }
+  .poster { width: 78px; }
+  .movie.best .poster { width: 90px; }
+
+  .d-text h2 { font-size: 1.2rem; }
+  .site-footer { font-size: 0.75rem; padding: 20px 14px; }
+}
