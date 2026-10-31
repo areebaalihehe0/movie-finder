@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Find Your Movie | A Film for Every Mood</title>
+
+  <!-- Fonts (needs internet; the site still works without it) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://image.tmdb.org">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Lines design shown behind the whole page (optional picture: lines.jpeg) -->
+  <div class="bg-lines" aria-hidden="true"></div>
+
+  <main class="app" id="top">
+
+    <!-- FRONT HEADING + PICTURES -->
+    <section class="hero">
+
+      <div class="hero-copy">
+        <p class="eyebrow">Movie night, sorted</p>
+        <h1>Don't know what movie to watch?<br><span>We've got you.</span></h1>
+        <p class="hero-text">
+          Tell us how you feel and what you're into, and we'll pick the right movies for tonight.
+        </p>
+        <a href="#explore" class="btn">Find my movie</a>
+      </div>
+
+      <!-- These three pictures must be in the same folder as this file -->
+      <div class="collage">
+        <figure class="pic pic-boy">
+          <img src="beautiful.jpeg" alt="Beautiful Boy movie poster">
+        </figure>
+
+        <figure class="pic pic-truman">
+          <img src="truman.jpeg" alt="The Truman Show movie poster">
+        </figure>
+
+        <figure class="pic pic-snow">
+          <img src="t.jpeg" alt="A boy lying in the snow with his arms stretched out">
+        </figure>
+      </div>
+
+    </section>
+
+    <!-- NAVIGATION BETWEEN THE THREE SECTIONS -->
+    <div class="section" id="explore" style="padding-bottom: 0;">
+      <div class="tabs" id="tabs" role="tablist" aria-label="Movie sections">
+        <button class="tab" role="tab" id="tab-foryou" aria-controls="panel-foryou" aria-selected="true">For You</button>
+        <button class="tab" role="tab" id="tab-trending" aria-controls="panel-trending" aria-selected="false" tabindex="-1">Trending Now</button>
+        <button class="tab" role="tab" id="tab-latest" aria-controls="panel-latest" aria-selected="false" tabindex="-1">Latest Releases</button>
+      </div>
+    </div>
+
+    <!-- 1) FOR YOU -->
+    <section class="section" id="panel-foryou" role="tabpanel" aria-labelledby="tab-foryou">
+      <div class="finder" id="finder">
+        <h2>Find your movie</h2>
+
+        <form id="finder-form">
+
+          <fieldset>
+            <legend>1. How are you feeling today?</legend>
+            <div class="options">
+            <input type="radio" name="mood" id="mood-happy" value="happy">
+            <label for="mood-happy"> Happy</label>
+
+            <input type="radio" name="mood" id="mood-sad" value="sad">
+            <label for="mood-sad"> Sad</label>
+
+            <input type="radio" name="mood" id="mood-chill" value="chill">
+            <label for="mood-chill"> Chill</label>
+
+            <input type="radio" name="mood" id="mood-excited" value="excited">
+            <label for="mood-excited">Excited</label>
+
+            <input type="radio" name="mood" id="mood-romantic" value="romantic">
+            <label for="mood-romantic"> Romantic</label>
+
+            <input type="radio" name="mood" id="mood-thoughtful" value="thoughtful">
+            <label for="mood-thoughtful"> Thoughtful</label>
+
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>2. What genre are you in the mood for?</legend>
+            <div class="options">
+            <input type="radio" name="genre" id="genre-any" value="any" checked>
+            <label for="genre-any"> Surprise me</label>
+
+            <input type="radio" name="genre" id="genre-comedy" value="comedy">
+            <label for="genre-comedy">Comedy</label>
+
+            <input type="radio" name="genre" id="genre-drama" value="drama">
+            <label for="genre-drama">Drama</label>
+
+            <input type="radio" name="genre" id="genre-action" value="action">
+            <label for="genre-action">Action</label>
+
+            <input type="radio" name="genre" id="genre-romance" value="romance">
+            <label for="genre-romance">Romance</label>
+
+            <input type="radio" name="genre" id="genre-thriller" value="thriller">
+            <label for="genre-thriller">Thriller</label>
+
+            <input type="radio" name="genre" id="genre-scifi" value="scifi">
+            <label for="genre-scifi">Sci-Fi</label>
+
+            <input type="radio" name="genre" id="genre-horror" value="horror">
+            <label for="genre-horror">Horror</label>
+
+            <input type="radio" name="genre" id="genre-animation" value="animation">
+            <label for="genre-animation">Animation</label>
+
+            <input type="radio" name="genre" id="genre-adventure" value="adventure">
+            <label for="genre-adventure">Adventure</label>
+
+            <input type="radio" name="genre" id="genre-mystery" value="mystery">
+            <label for="genre-mystery">Mystery</label>
+
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>3. What kind of movie experience are you looking for?</legend>
+            <div class="options">
+            <input type="radio" name="exp" id="exp-easy" value="easy">
+            <label for="exp-easy"> Something Easy &amp; Fun</label>
+
+            <input type="radio" name="exp" id="exp-think" value="think">
+            <label for="exp-think"> Something Thought-Provoking</label>
+
+            <input type="radio" name="exp" id="exp-emotional" value="emotional">
+            <label for="exp-emotional"> Something Emotional</label>
+
+            <input type="radio" name="exp" id="exp-intense" value="intense">
+            <label for="exp-intense"> Something Intense</label>
+
+            <input type="radio" name="exp" id="exp-inspiring" value="inspiring">
+            <label for="exp-inspiring"> Something Inspiring</label>
+
+            <input type="radio" name="exp" id="exp-nostalgic" value="nostalgic">
+            <label for="exp-nostalgic"> Something Nostalgic</label>
+
+            </div>
+          </fieldset>
+
+          <p class="hint" id="hint" aria-live="polite">Pick a mood, a genre and the kind of experience you want. Then press the button.</p>
+
+          <div class="form-actions">
+            <button type="submit" class="btn">Show me my movies</button>
+            <button type="reset" class="btn btn-outline">Start over</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="results" id="results" hidden>
+        <h2 style="font-family: 'Playfair Display', Georgia, serif; text-align:center; color: var(--plum-dark); margin-bottom: 8px;">Tonight's picks</h2>
+        <p class="summary" style="margin-top:0">Ranked by how well each movie fits your mood, genre and experience. The big one at the top is my best pick for you.</p>
+        <div class="note" id="rec-note" aria-live="polite"></div>
+        <div class="cards" id="rec-grid"></div>
+        <div class="results-actions">
+          <button type="button" class="btn" id="change-choices">Change my choices</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2) TRENDING NOW -->
+    <section class="section" id="panel-trending" role="tabpanel" aria-labelledby="tab-trending" hidden>
+      <h2>Trending Now</h2>
+      <p class="lead">What everyone is watching right now.</p>
+      <div class="toolbar" id="trend-window" role="group" aria-label="Trending period">
+        <button class="chip" type="button" data-v="day" aria-pressed="false">Today</button>
+        <button class="chip" type="button" data-v="week" aria-pressed="true">This week</button>
+      </div>
+      <div class="cards" id="trend-grid"></div>
+      <button type="button" class="btn more" id="trend-more" hidden>Load more</button>
+    </section>
+
+    <!-- 3) LATEST RELEASES -->
+    <section class="section" id="panel-latest" role="tabpanel" aria-labelledby="tab-latest" hidden>
+      <h2>Latest Releases</h2>
+      <p class="lead">The newest movies first, using their real release dates.</p>
+      <div class="toolbar" id="latest-status" role="group" aria-label="Released or coming soon">
+        <button class="chip" type="button" data-v="released" aria-pressed="true">Released</button>
+        <button class="chip" type="button" data-v="upcoming" aria-pressed="false">Coming soon</button>
+      </div>
+      <div class="toolbar" id="latest-genre" role="group" aria-label="Filter by genre">
+        <button class="chip" type="button" data-v="" aria-pressed="true">All</button>
+        <button class="chip" type="button" data-v="28" aria-pressed="false">Action</button>
+        <button class="chip" type="button" data-v="12" aria-pressed="false">Adventure</button>
+        <button class="chip" type="button" data-v="16" aria-pressed="false">Animation</button>
+        <button class="chip" type="button" data-v="35" aria-pressed="false">Comedy</button>
+        <button class="chip" type="button" data-v="18" aria-pressed="false">Drama</button>
+        <button class="chip" type="button" data-v="27" aria-pressed="false">Horror</button>
+        <button class="chip" type="button" data-v="10749" aria-pressed="false">Romance</button>
+        <button class="chip" type="button" data-v="878" aria-pressed="false">Sci-Fi</button>
+        <button class="chip" type="button" data-v="53" aria-pressed="false">Thriller</button>
+      </div>
+      <div class="cards" id="latest-grid"></div>
+      <button type="button" class="btn more" id="latest-more" hidden>Load more</button>
+    </section>
+
+  </main>
+
+  <!-- MOVIE DETAILS WINDOW -->
+  <dialog id="details" aria-label="Movie details">
+    <button type="button" id="details-close" aria-label="Close details">&times;</button>
+    <div id="details-body"></div>
+  </dialog>
+
+  <footer class="site-footer">
+    <p>Hand-picked IMDb ratings are approximate and can change &middot; Made for movie nights</p>
+    <p class="credit">This product uses the TMDB API but is not endorsed or certified by TMDB.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

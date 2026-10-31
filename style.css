@@ -1,0 +1,760 @@
+/* ==========================================
+   Movie Finder - rich plum and blush rose theme
+   Change the colors below to restyle the whole site
+   ========================================== */
+:root {
+  --blush: #F6DDE2;          /* page background */
+  --blush-deep: #EBC3CC;     /* borders and soft accents */
+  --blush-light: #FFF5F6;    /* cards and panels */
+  --rose: #D98FA0;           /* blush rose accent */
+  --plum: #6B2D5C;           /* main plum */
+  --plum-soft: #8E4A7C;      /* lighter plum for accents */
+  --plum-dark: #3F1A3C;      /* deep plum for headings */
+  --gold: #F5C76B;           /* IMDb-style star color */
+  --ink: #3A1B38;
+  --muted: #7A5676;
+  --radius: 18px;
+  --shadow: 0 14px 34px rgba(63, 26, 60, 0.18);
+}
+
+/* ---------- Reset and base ---------- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Poppins", "Segoe UI", sans-serif;
+  background: var(--blush);
+  color: var(--ink);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* The lines picture sits behind the whole page (optional: if the file
+   is missing, the page just stays plain blush pink). */
+.bg-lines {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background-color: var(--blush);
+  background-image: url("lines.jpeg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-blend-mode: multiply;
+  opacity: 0.32;
+  pointer-events: none;
+}
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-block;
+  background: var(--plum);
+  color: var(--blush-light);
+  border: 2px solid var(--plum);
+  padding: 14px 34px;
+  border-radius: 999px;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s, color 0.2s;
+}
+
+.btn:hover {
+  background: var(--plum-dark);
+  border-color: var(--plum-dark);
+  transform: translateY(-2px);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--plum);
+}
+
+.btn-outline:hover {
+  background: var(--plum);
+  color: var(--blush-light);
+}
+
+/* ---------- Hero: heading on the left, pictures on the right ---------- */
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(32px, 5vw, 72px);
+  max-width: 1150px;
+  margin: 0 auto;
+  padding: clamp(40px, 7vw, 80px) 6vw clamp(60px, 8vw, 100px);
+}
+
+.hero-copy {
+  text-align: left;
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--plum);
+  margin-bottom: 16px;
+}
+
+.hero h1 {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(2rem, 4.2vw, 3.1rem);
+  line-height: 1.15;
+  color: var(--plum-dark);
+}
+
+.hero h1 span {
+  color: var(--plum-soft);
+  font-style: italic;
+}
+
+.hero-text {
+  max-width: 460px;
+  margin: 20px 0 30px;
+  font-size: 1.02rem;
+  color: var(--muted);
+}
+
+/* ---------- Picture collage ---------- */
+.collage {
+  position: relative;
+  width: 100%;
+  max-width: 520px;
+  aspect-ratio: 1 / 1.02;
+  margin-inline: auto;
+}
+
+.pic {
+  position: absolute;
+  margin: 0;
+  overflow: hidden;
+  border-radius: 14px;
+  background: var(--blush-light);
+  box-shadow: 0 18px 40px rgba(63, 26, 60, 0.28);
+  transform: rotate(var(--tilt, 0deg));
+  animation: float 7s ease-in-out infinite;
+}
+
+.pic img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Beautiful Boy poster: left, tilted back, sits behind the others */
+.pic-boy {
+  --tilt: -8deg;
+  width: 50%;
+  aspect-ratio: 675 / 1000;
+  left: 0;
+  top: 12%;
+  z-index: 1;
+  animation-delay: -3s;
+}
+
+/* The Truman Show poster: top right, in front of the Beautiful Boy poster */
+.pic-truman {
+  --tilt: 7deg;
+  width: 47%;
+  aspect-ratio: 1066 / 1600;
+  right: 0;
+  top: 0;
+  z-index: 2;
+}
+
+/* Snow angel picture: bottom centre, overlapping both posters */
+.pic-snow {
+  --tilt: -4deg;
+  width: 62%;
+  aspect-ratio: 3 / 2;
+  left: 26%;
+  bottom: 0;
+  z-index: 3;
+  animation-delay: -5s;
+}
+
+@keyframes float {
+  0%, 100% { translate: 0 0; }
+  50% { translate: 0 -8px; }
+}
+
+/* ---------- Finder ---------- */
+.finder {
+  max-width: 820px;
+  margin: 0 auto 80px;
+  padding: 44px clamp(20px, 5vw, 48px);
+  background: rgba(255, 245, 246, 0.94);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.finder h2,
+.results h2 {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 2rem;
+  color: var(--plum-dark);
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+fieldset {
+  border: none;
+  margin-bottom: 30px;
+}
+
+legend {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--plum);
+  margin-bottom: 14px;
+  padding: 0;
+}
+
+.options {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+/* The real radio buttons are hidden; the labels look like buttons */
+.options input {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+}
+
+.options label {
+  padding: 10px 20px;
+  border: 2px solid var(--blush-deep);
+  border-radius: 999px;
+  background: var(--blush);
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, color 0.2s, transform 0.2s;
+}
+
+.options label:hover {
+  border-color: var(--plum);
+  transform: translateY(-1px);
+}
+
+.options input:checked + label {
+  background: var(--plum);
+  border-color: var(--plum);
+  color: var(--blush-light);
+}
+
+.options input:focus-visible + label {
+  outline: 3px solid rgba(107, 45, 92, 0.4);
+  outline-offset: 2px;
+}
+
+.hint {
+  text-align: center;
+  color: var(--muted);
+  margin-bottom: 14px;
+}
+
+.form-actions {
+  text-align: center;
+}
+
+/* ---------- Results ---------- */
+.results {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 0 6vw 80px;
+}
+
+.summary {
+  text-align: center;
+  color: var(--muted);
+  margin: -14px auto 30px;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 22px;
+}
+
+/* ---------- A movie card: poster on the left, details on the right ---------- */
+.movie {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: start;
+  gap: 18px;
+  padding: 22px;
+  background: var(--plum);
+  color: var(--blush-light);
+  border: 2px solid transparent;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  animation: rise 0.5s ease both;
+}
+
+/* Poster slot. Layer 1 is the movie's poster picture (set on each card with
+   --p). If that file is missing, you simply see layers 2 and 3 instead:
+   a small play button on a plum gradient. */
+.poster {
+  width: 92px;
+  aspect-ratio: 2 / 3;
+  border-radius: 10px;
+  background-image:
+    var(--p, none),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 90'%3E%3Cpolygon points='23,36 23,56 41,46' fill='%23FFF5F6' fill-opacity='.65'/%3E%3C/svg%3E"),
+    linear-gradient(150deg, var(--plum-soft), var(--plum-dark));
+  background-size: cover, 55% auto, auto;
+  background-position: center;
+  background-repeat: no-repeat;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.3);
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  min-width: 0;
+}
+
+.movie h3 {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 1.3rem;
+  line-height: 1.25;
+}
+
+.rating {
+  font-size: 0.9rem;
+  color: var(--blush-deep);
+}
+
+.rating b {
+  color: var(--gold);
+  font-size: 1.05rem;
+}
+
+.meta {
+  font-size: 0.85rem;
+  color: var(--rose);
+}
+
+.director {
+  font-size: 0.82rem;
+  color: var(--blush-deep);
+  font-style: italic;
+}
+
+.desc {
+  font-size: 0.9rem;
+}
+
+.no-match {
+  display: none;
+  grid-column: 1 / -1;
+  text-align: center;
+  color: var(--muted);
+}
+
+.results-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 14px;
+  margin-top: 40px;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ---------- Footer ---------- */
+.site-footer {
+  padding: 30px 6vw;
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--muted);
+  border-top: 1px solid var(--blush-deep);
+}
+
+/* ---------- Tablets and phones ---------- */
+@media (max-width: 880px) {
+  .hero {
+    grid-template-columns: 1fr;
+    gap: 44px;
+  }
+
+  .hero-copy {
+    text-align: center;
+  }
+
+  .hero-text {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .collage {
+    max-width: 440px;
+  }
+}
+
+@media (max-width: 600px) {
+  .finder {
+    margin: 0 4vw 60px;
+    padding: 32px 20px;
+  }
+
+  .options label {
+    padding: 9px 16px;
+    font-size: 0.92rem;
+  }
+
+  .cards {
+    grid-template-columns: 1fr;
+  }
+
+  .movie {
+    gap: 14px;
+    padding: 18px;
+  }
+
+  .poster {
+    width: 78px;
+  }
+}
+
+/* Respect people who prefer less motion */
+@media (prefers-reduced-motion: reduce) {
+  .pic,
+  .movie {
+    animation: none;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* ==========================================
+   NEW IN THIS VERSION: tabs, sections, posters, states, details window
+   ========================================== */
+[hidden] { display: none !important; }
+
+.btn-small {
+  padding: 9px 20px;
+  font-size: 0.88rem;
+}
+
+/* ---------- Tabs: For You / Trending Now / Latest Releases ---------- */
+.tabs {
+  display: flex;
+  gap: 8px;
+  max-width: 820px;
+  margin: 0 auto 28px;
+  padding: 6px;
+  background: rgba(255, 245, 246, 0.94);
+  border-radius: 999px;
+  box-shadow: var(--shadow);
+}
+
+.tab {
+  flex: 1;
+  padding: 12px 10px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--plum);
+  font-family: inherit;
+  font-size: 0.98rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.tab:hover { background: var(--blush); }
+
+.tab[aria-selected="true"] {
+  background: var(--plum);
+  color: var(--blush-light);
+}
+
+.tab:focus-visible,
+.btn:focus-visible,
+.chip:focus-visible {
+  outline: 3px solid rgba(107, 45, 92, 0.5);
+  outline-offset: 2px;
+}
+
+/* ---------- Sections ---------- */
+.section {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 0 6vw 80px;
+}
+
+.section > h2 {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 2rem;
+  color: var(--plum-dark);
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.section > .lead {
+  text-align: center;
+  color: var(--muted);
+  margin-bottom: 22px;
+}
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.chip {
+  padding: 8px 18px;
+  border: 2px solid var(--blush-deep);
+  border-radius: 999px;
+  background: var(--blush-light);
+  color: var(--ink);
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+
+.chip:hover { border-color: var(--plum); }
+
+.chip[aria-pressed="true"] {
+  background: var(--plum);
+  border-color: var(--plum);
+  color: var(--blush-light);
+}
+
+.finder { margin-bottom: 40px; }
+
+.hint.warn { color: #9A2A4A; font-weight: 600; }
+
+.more {
+  display: block;
+  margin: 34px auto 0;
+}
+
+.more:disabled { opacity: 0.6; cursor: wait; }
+
+/* ---------- Cards: bigger posters, best pick, tags ---------- */
+.results { padding: 0; }
+
+.poster {
+  position: relative;
+  width: 120px;
+  overflow: hidden;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 90'%3E%3Cpolygon points='23,36 23,56 41,46' fill='%23FFF5F6' fill-opacity='.65'/%3E%3C/svg%3E"),
+    linear-gradient(150deg, var(--plum-soft), var(--plum-dark));
+  background-size: 55% auto, auto;
+}
+
+.poster img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.movie.best {
+  grid-column: 1 / -1;
+  padding: 28px;
+  background: linear-gradient(135deg, var(--plum-dark), var(--plum));
+  border-color: var(--rose);
+  box-shadow: 0 22px 50px rgba(63, 26, 60, 0.4);
+}
+
+.movie.best .poster { width: 150px; }
+
+.best-badge {
+  grid-column: 1 / -1;
+  justify-self: start;
+  background: var(--rose);
+  color: var(--plum-dark);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 5px 16px;
+  border-radius: 999px;
+}
+
+.movie h3 { overflow-wrap: anywhere; }
+
+.desc {
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.rating .na { font-style: italic; }
+
+.tag {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 999px;
+}
+
+.tag-soon { background: var(--gold); color: var(--plum-dark); }
+.tag-out { background: rgba(255, 245, 246, 0.16); color: var(--blush-light); }
+
+.info .btn-small {
+  margin-top: 4px;
+  background: var(--blush-light);
+  border-color: var(--blush-light);
+  color: var(--plum-dark);
+}
+
+.d-text .btn-small {
+  margin-top: 6px;
+  background: var(--blush-light);
+  border-color: var(--blush-light);
+  color: var(--plum-dark);
+}
+
+.d-text .btn-small:hover {
+  background: var(--rose);
+  border-color: var(--rose);
+}
+
+.info .btn-small:hover {
+  background: var(--rose);
+  border-color: var(--rose);
+}
+
+/* ---------- Notes, errors, loading skeletons ---------- */
+.note {
+  text-align: center;
+  color: var(--muted);
+  margin: -14px auto 24px;
+}
+
+.note p { margin-bottom: 10px; }
+
+.state-box {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 24px;
+  background: var(--blush-light);
+  border: 2px dashed var(--rose);
+  border-radius: var(--radius);
+  color: var(--ink);
+}
+
+.state-box p { margin-bottom: 12px; }
+.note .state-box { margin-top: 8px; }
+
+.skeleton .poster { background: var(--plum-soft); opacity: 0.5; }
+
+.sk {
+  display: block;
+  height: 14px;
+  border-radius: 8px;
+  background: linear-gradient(90deg, rgba(255,255,255,.12), rgba(255,255,255,.3), rgba(255,255,255,.12));
+  background-size: 200% 100%;
+  animation: shimmer 1.4s linear infinite;
+}
+
+.sk-title { width: 70%; height: 20px; }
+.sk-line { width: 100%; }
+.sk-line.short { width: 55%; }
+
+@keyframes shimmer {
+  from { background-position: 200% 0; }
+  to { background-position: -200% 0; }
+}
+
+/* ---------- Details window ---------- */
+dialog {
+  width: min(720px, 92vw);
+  max-height: 88vh;
+  margin: auto;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius);
+  background: var(--plum);
+  color: var(--blush-light);
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.45);
+  overflow: auto;
+}
+
+dialog::backdrop { background: rgba(63, 26, 60, 0.6); }
+
+#details-body {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 24px;
+  padding: 32px;
+}
+
+.poster.big { width: 200px; }
+
+.d-text { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; min-width: 0; }
+.d-text h2 { font-family: "Playfair Display", Georgia, serif; font-size: 1.6rem; line-height: 1.2; }
+.tagline { font-style: italic; color: var(--rose); }
+
+#details-close {
+  position: absolute;
+  top: 10px;
+  right: 14px;
+  width: 38px;
+  height: 38px;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255, 245, 246, 0.16);
+  color: var(--blush-light);
+  font-size: 1.4rem;
+  cursor: pointer;
+}
+
+#details-close:hover { background: var(--rose); color: var(--plum-dark); }
+
+@media (max-width: 600px) {
+  .tab { font-size: 0.85rem; padding: 11px 6px; }
+  .poster { width: 96px; }
+  .movie.best .poster { width: 110px; }
+  #details-body { grid-template-columns: 1fr; padding: 56px 22px 26px; }
+  .poster.big { width: 150px; }
+}
+
+.credit { font-size: 0.78rem; margin-top: 6px; }
